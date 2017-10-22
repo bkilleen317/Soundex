@@ -91,34 +91,41 @@ void Soundex::convertToSoundexIntermediate(string& unconverted){
 }
 
 void Soundex::convertToSoundexConverted(string& intermediate){
+    //Remove all underscore chars and
     for(int i = 0; i < intermediate.length(); i++){
         if(intermediate[i] == '_'){
             intermediate.erase(i,1);
             --i;
         }
     }
+    //Remove double chars
     for(int i = 0; i < intermediate.length(); i++){
         if(intermediate[i] == intermediate[i + 1]){
             intermediate.erase(i + 1, 1);
         }
     }
+    //Remove same chars separtated by & (representing 'h; and 'w')
     for(int i = 0; i < intermediate.length(); i++){
         if(intermediate[i + 1] == '&' && intermediate[i + 2] == intermediate[i]){
             intermediate.erase(i + 1, 2);
         }
     }
+    //Remove & once previous condition is evaluated
     for(int i = 0; i < intermediate.length(); i++){
         if(intermediate[i] == '&'){
             intermediate.erase(i,1);
         }
     }
-    if(intermediate.length() >= 5){
+    //Erase string if longer than 4
+    if(intermediate.length() > 4){
         intermediate.erase(4);
     }
+    //Pad with trailing zeros if shorter than 4
     while(intermediate.length() < 4){
         string filler = "0";
         intermediate.append(filler);
     }
+    //Replace first letter converted to intermediate with original letter
     unconverted[0] = storedLetter;
 }
 
