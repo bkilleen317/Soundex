@@ -92,12 +92,13 @@ void Soundex::convertToSoundexIntermediate(string& unconverted){
 
 void Soundex::convertToSoundexConverted(string& intermediate){
     //Remove all underscore chars and
-    for(int i = 0; i < intermediate.length(); i++){
+    for(int i = 1; i < intermediate.length(); i++){
         if(intermediate[i] == '_'){
             intermediate.erase(i,1);
             --i;
         }
     }
+
     //Remove double chars
     for(int i = 0; i < intermediate.length(); i++){
         if(intermediate[i] == intermediate[i + 1]){
@@ -111,7 +112,7 @@ void Soundex::convertToSoundexConverted(string& intermediate){
         }
     }
     //Remove & once previous condition is evaluated
-    for(int i = 0; i < intermediate.length(); i++){
+    for(int i = 1; i < intermediate.length(); i++){
         if(intermediate[i] == '&'){
             intermediate.erase(i,1);
         }
