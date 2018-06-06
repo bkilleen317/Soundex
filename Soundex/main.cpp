@@ -137,3 +137,4 @@ string Soundex::getSoundexIntermediate(){
 string Soundex::getSoundexConverted(){
     return converted;
 }
+
